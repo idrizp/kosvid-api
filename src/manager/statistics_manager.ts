@@ -13,7 +13,7 @@ const url: string =
  * @returns The number that is parsed.
  */
 const parseNumber = (input: string): number => {
-	return input.trim().length === 0 ? 0 : Number(input);
+	return input.trim().length === 0 ? -1 : Number(input);
 };
 
 /**

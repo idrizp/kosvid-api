@@ -1,4 +1,6 @@
 import { config } from "dotenv";
+import * as cors from "cors";
+import * as helmet from "helmet";
 config();
 
 import * as express from "express";
@@ -14,7 +16,11 @@ import StatisticsManager from "./manager/statistics_manager";
 
 	const app = express();
 
-	app.use(express.json()).use(express.urlencoded({ extended: true }));
+	app.use(cors())
+		.use(express.json())
+		.use(express.urlencoded({ extended: true }))
+		.use(helmet());
+
 	app.get("/api/daily", DailyStatistics(statisticsManager))
 		.get("/api/weekly", WeeklyStatistics(statisticsManager))
 		.get("/api/monthly", MonthlyStatistics(statisticsManager));
